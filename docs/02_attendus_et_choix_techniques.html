@@ -14,6 +14,7 @@
   }
   *{box-sizing:border-box}
   html{font-size:13px}
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
   body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1c2430;line-height:1.5;margin:0}
   .page{max-width:900px;margin:0 auto;padding:0 6mm}
   h1{color:var(--bleu);font-size:2rem;margin:0 0 4px}
@@ -71,6 +72,37 @@
       <span class="tag tag-violet">Justifications techniques</span>
     </p>
   </div>
+
+  <h2>Bilan de réalisation (mise à jour finale)</h2>
+  <div class="box ok">
+    <div class="t">✔ Projet livré en full-stack — 100 % du sujet + bonus, déployé en ligne</div>
+    Ce document décrivait le <em>plan</em> et les choix envisagés. Voici ce qui a été <strong>effectivement
+    réalisé</strong> :
+    <ul>
+      <li><strong>Back</strong> : Spring Boot 4 (Java 21), CRUD produits, JWT (BCrypt), contrôle admin
+          (<code>admin@admin.com</code>), panier &amp; wishlist par utilisateur, base H2, Swagger.</li>
+      <li><strong>Front</strong> : affichage produits enrichi, panier (badge + page + persistance), page Contact
+          validée, pagination + filtrage, connexion/inscription, interceptor JWT, guard, boutons de gestion
+          réservés à l'admin.</li>
+      <li><strong>Tests</strong> : JUnit/Mockito/MockMvc côté back, <strong>Jest</strong> côté front (écrits
+          au fur et à mesure).</li>
+      <li><strong>Industrialisation</strong> : Docker + déploiement sur <strong>Render</strong> (front + back).</li>
+    </ul>
+  </div>
+  <div class="box warn">
+    <div class="t">Écarts assumés par rapport au plan initial ci-dessous</div>
+    <ul>
+      <li><strong>Tests front</strong> : <strong>Jest</strong> retenu au lieu de Karma (déprécié).</li>
+      <li><strong>Hébergement</strong> : <strong>Render</strong> pour le front ET le back (au lieu de Vercel),
+          pour rester sur une seule plateforme.</li>
+      <li><strong>Base</strong> : <strong>H2</strong> conservée (pas de Supabase/PostgreSQL) — suffisant pour la
+          démo ; bascule possible sans changer le code grâce à JPA.</li>
+      <li><strong>Panier</strong> : géré côté front (Signals + localStorage) ; l'API panier du back existe et est
+          testée (branchement possible en évolution).</li>
+    </ul>
+  </div>
+  <p class="small">La suite de ce document conserve l'analyse des exigences et la justification des choix
+     techniques (utile pour la soutenance).</p>
 
   <h2>0. Comment lire ce document</h2>
   <p>Chaque exigence du <code>README.md</code> est reprise une à une. Pour chacune :</p>

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ALTEN SHOP — Présentation soutenance</title>
+<style>
+  :root{
+    --bleu:#1B3A6B; --bleu2:#2E5FA3; --bleuclair:#E8F0FB;
+    --vert:#1E6B3C; --vertclair:#E8F5EE; --rouge:#C0392B; --rougeclair:#FDECEA;
+    --orange:#B9560D; --orangeclair:#FBEEE3; --gris:#5A6472; --grisclair:#F4F6F9; --bord:#D8DEE7;
+    --violet:#5B3A86; --violetclair:#F0EAF8;
+  }
+  *{box-sizing:border-box}
+  html,body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1c2430;margin:0}
+  .slide{
+    width:297mm; min-height:200mm; padding:16mm 20mm; position:relative;
+    page-break-after:always; display:flex; flex-direction:column;
+  }
+  .slide:last-child{page-break-after:auto}
+  h1{color:var(--bleu);font-size:34pt;margin:0 0 6px;line-height:1.1}
+  h2{color:var(--bleu);font-size:24pt;margin:0 0 16px;border-bottom:3px solid var(--bleu2);padding-bottom:8px}
+  h3{color:var(--bleu2);font-size:14pt;margin:14px 0 6px}
+  p{font-size:12.5pt;line-height:1.5;margin:6px 0}
+  li{font-size:12.5pt;line-height:1.5;margin:5px 0}
+  ul{margin:6px 0;padding-left:24px}
+  .kicker{color:var(--gris);font-size:12pt;letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+  .pagenum{position:absolute;bottom:10mm;right:20mm;color:var(--gris);font-size:10pt}
+  .footer-brand{position:absolute;bottom:10mm;left:20mm;color:var(--gris);font-size:10pt}
+  .cover{justify-content:center;background:linear-gradient(135deg,#1B3A6B 0%,#2E5FA3 100%);color:#fff}
+  .cover h1{color:#fff;font-size:46pt}
+  .cover .sub{font-size:16pt;opacity:.95;margin-top:8px}
+  .cover .tags{margin-top:26px}
+  .cover .tag{display:inline-block;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);
+    border-radius:20px;padding:6px 16px;margin:5px 6px;font-size:11.5pt}
+  .grid2{display:flex;gap:22px}
+  .grid2>div{flex:1}
+  .card{border:1px solid var(--bord);border-radius:10px;padding:14px 18px;background:var(--grisclair);margin:8px 0}
+  .card.b{border-left:6px solid var(--bleu2)}
+  .card.g{border-left:6px solid var(--vert);background:var(--vertclair)}
+  .card.o{border-left:6px solid var(--orange);background:var(--orangeclair)}
+  .card.v{border-left:6px solid var(--violet);background:var(--violetclair)}
+  .card .t{font-weight:700;font-size:13pt;margin-bottom:4px}
+  table{border-collapse:collapse;width:100%;margin:10px 0;font-size:11.5pt}
+  th,td{border:1px solid var(--bord);padding:8px 11px;text-align:left;vertical-align:top}
+  th{background:var(--bleu);color:#fff}
+  tr:nth-child(even) td{background:var(--grisclair)}
+  code{background:#eef2f7;border:1px solid var(--bord);border-radius:4px;padding:1px 6px;
+    font-family:'Consolas',monospace;font-size:11pt}
+  .arch{font-family:'Consolas',monospace;font-size:12pt;white-space:pre;line-height:1.5;
+    background:var(--grisclair);border:1px solid var(--bord);border-radius:10px;padding:20px;text-align:center}
+  .ok{color:var(--vert);font-weight:700}
+  .big{font-size:15pt}
+  .pill{display:inline-block;background:var(--vertclair);color:var(--vert);border-radius:6px;
+    padding:2px 10px;font-size:11pt;font-weight:700}
+  @page{size:A4 landscape;margin:0}
+</style>
+</head>
+<body>
+
+<!-- ================= SLIDE 1 — COUVERTURE ================= -->
+<section class="slide cover">
+  <div class="kicker" style="color:#cfe0f7">Test technique — Soutenance</div>
+  <h1>ALTEN SHOP</h1>
+  <div class="sub">Application e-commerce full-stack · Angular + Spring Boot</div>
+  <div class="tags">
+    <span class="tag">Angular 18</span>
+    <span class="tag">Spring Boot 4 (Java 21)</span>
+    <span class="tag">JWT · BCrypt</span>
+    <span class="tag">Tests JUnit + Jest</span>
+    <span class="tag">Docker</span>
+    <span class="tag">Déployé sur Render</span>
+  </div>
+  <p style="margin-top:36px;color:#cfe0f7">Présenté par : ________________________ &nbsp;·&nbsp; Juin 2026</p>
+</section>
+
+<!-- ================= SLIDE 2 — CONTEXTE ================= -->
+<section class="slide">
+  <h2>1. Contexte &amp; objectif</h2>
+  <p class="big">Enrichir le site e-commerce d'ALTEN avec de nouvelles fonctionnalités, côté
+     <strong>front ET back</strong> (profil full-stack).</p>
+  <div class="grid2" style="margin-top:10px">
+    <div>
+      <h3>Ce qui était demandé</h3>
+      <ul>
+        <li><strong>Front</strong> : affichage produits, panier (ajout/retrait/badge/page), page Contact validée</li>
+        <li><strong>Back</strong> : API de gestion de produits, connexion JWT, restriction admin, panier &amp; wishlist</li>
+        <li><strong>Bonus</strong> : pagination/filtrage, ajustement quantités, tests/Swagger</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Le point de départ</h3>
+      <ul>
+        <li>Un front Angular <strong>partiel</strong> fourni (liste produits minimale, CRUD en mémoire)</li>
+        <li>Un dossier back <strong>vide</strong> → tout à construire</li>
+        <li>30 produits de démonstration en JSON</li>
+      </ul>
+      <div class="card g"><span class="pill">Résultat</span> 100 % du sujet couvert + tous les bonus, en ligne.</div>
+    </div>
+  </div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">2</div>
+</section>
+
+<!-- ================= SLIDE 3 — STACK & CHOIX ================= -->
+<section class="slide">
+  <h2>2. Stack technique &amp; justification des choix</h2>
+  <table>
+    <tr><th>Brique</th><th>Choix</th><th>Pourquoi</th></tr>
+    <tr><td>Front</td><td>Angular 18 + PrimeNG, Signals</td><td>Base fournie ; Signals = état réactif moderne sans la lourdeur de NgRx</td></tr>
+    <tr><td>Back</td><td>Java 21 + Spring Boot 4</td><td>Standard d'entreprise pour les API REST, écosystème mature, sécurité éprouvée</td></tr>
+    <tr><td>Persistance</td><td>Spring Data JPA + H2</td><td>CRUD et schéma générés ; H2 = zéro installation ; bascule PostgreSQL en 1 ligne de config</td></tr>
+    <tr><td>Sécurité</td><td>Spring Security + JWT + BCrypt</td><td>Authentification stateless, mots de passe jamais en clair</td></tr>
+    <tr><td>Tests</td><td>JUnit 5 / Mockito (back) · Jest (front)</td><td>Tests écrits au fur et à mesure ; Jest choisi car Karma est déprécié</td></tr>
+    <tr><td>Doc API</td><td>springdoc-openapi (Swagger)</td><td>Documentation interactive et testable, générée automatiquement</td></tr>
+    <tr><td>Industrialisation</td><td>Docker + Render</td><td>Image portable, déploiement reproductible, démo en ligne</td></tr>
+  </table>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">3</div>
+</section>
+
+<!-- ================= SLIDE 4 — ARCHITECTURE ================= -->
+<section class="slide">
+  <h2>3. Architecture</h2>
+  <div class="arch">┌───────────────────────────┐        ┌────────────────────────────┐        ┌──────────┐
+│   FRONT — Angular (4200)  │        │   BACK — Spring Boot (8081)│        │   H2     │
+│                           │  HTTP  │                            │  JPA   │  (SQL)   │
+│  standalone + Signals     │ ─────► │  Controller → Service →    │ ─────► │          │
+│  Interceptor JWT (Bearer) │ /api   │  Repository                │        │ products │
+│  Guard de route (login)   │ ◄───── │  Spring Security (JWT)     │ ◄───── │ users    │
+│  PrimeNG (UI)             │  JSON  │  BCrypt · contrôle admin   │        │ cart...  │
+└───────────────────────────┘        └────────────────────────────┘        └──────────┘</div>
+  <div class="grid2">
+    <div><div class="card b"><div class="t">Front en couches</div>
+      Découpage par fonctionnalité : <code>data-access</code> (services + modèles),
+      <code>features</code> (pages), <code>ui</code> (composants). État réactif par Signals.</div></div>
+    <div><div class="card b"><div class="t">Back en couches</div>
+      <code>Controller</code> (routes REST) → <code>Service</code> (métier) → <code>Repository</code> (base).
+      Sécurité transversale par filtre JWT, API stateless.</div></div>
+  </div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">4</div>
+</section>
+
+<!-- ================= SLIDE 5 — FRONT ================= -->
+<section class="slide">
+  <h2>4. Fonctionnalités — Front</h2>
+  <div class="grid2">
+    <div>
+      <h3>Partie 1 — Shop <span class="pill">fait</span></h3>
+      <ul>
+        <li>Liste produits riche : image, prix (€), note, <strong>badge de stock coloré</strong></li>
+        <li>Ajout au panier (+ notification) ; retrait</li>
+        <li><strong>Badge</strong> de quantité dans la barre du haut</li>
+        <li>Page panier : quantités ajustables (+/−), sous-totaux, total</li>
+        <li>Panier <strong>persistant</strong> (localStorage) → survit au rechargement</li>
+      </ul>
+      <h3>Partie 2 — Contact <span class="pill">fait</span></h3>
+      <ul>
+        <li>Menu « Contact » + formulaire réactif validé</li>
+        <li>Email &amp; message obligatoires, message ≤ 300 (compteur)</li>
+        <li>Bouton désactivé si invalide, message de succès</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Bonus <span class="pill">fait</span></h3>
+      <ul>
+        <li>Pagination de la liste</li>
+        <li>Filtrage par nom + par catégorie</li>
+        <li>Ajustement des quantités (liste &amp; panier)</li>
+      </ul>
+      <h3>Intégration &amp; sécurité côté front</h3>
+      <ul>
+        <li>Écran de <strong>connexion / inscription</strong></li>
+        <li><strong>Interceptor</strong> qui ajoute le token à chaque requête</li>
+        <li><strong>Guard</strong> : connexion obligatoire pour accéder à l'app</li>
+        <li>Boutons de gestion produits <strong>visibles uniquement par l'admin</strong></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">5</div>
+</section>
+
+<!-- ================= SLIDE 6 — BACK ================= -->
+<section class="slide">
+  <h2>5. Fonctionnalités — Back &amp; sécurité</h2>
+  <div class="grid2">
+    <div>
+      <h3>API produits <span class="pill">fait</span></h3>
+      <ul>
+        <li><code>GET /api/products</code> (+ par id), <code>POST</code>, <code>PATCH</code>, <code>DELETE</code></li>
+        <li>Validation des entrées, codes HTTP corrects (201/400/404/204)</li>
+        <li>30 produits + compte admin chargés au démarrage</li>
+      </ul>
+      <h3>Panier &amp; wishlist <span class="pill">fait</span></h3>
+      <ul>
+        <li><code>/cart</code> et <code>/wishlist</code> par utilisateur</li>
+        <li>Utilisateur déduit du token → <strong>isolation</strong> (on ne voit que le sien)</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Authentification JWT <span class="pill">fait</span></h3>
+      <ul>
+        <li><code>POST /account</code> (inscription), <code>POST /token</code> (connexion)</li>
+        <li>Mots de passe hachés <strong>BCrypt</strong> (jamais en clair)</li>
+        <li>Connexion obligatoire pour accéder à l'API</li>
+      </ul>
+      <h3>Contrôle admin <span class="pill">fait</span></h3>
+      <ul>
+        <li>Seul <code>admin@admin.com</code> peut créer/modifier/supprimer un produit</li>
+        <li>Filtre JWT → rôle déduit de l'email → <code>403</code> sinon</li>
+      </ul>
+      <div class="card g"><span class="pill">Bonus</span> Swagger UI + tests automatisés.</div>
+    </div>
+  </div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">6</div>
+</section>
+
+<!-- ================= SLIDE 7 — QUALITÉ ================= -->
+<section class="slide">
+  <h2>6. Qualité &amp; industrialisation</h2>
+  <div class="grid2">
+    <div>
+      <div class="card g"><div class="t">Tests automatisés (au fur et à mesure)</div>
+        <strong>Back</strong> : JUnit 5 + Mockito + MockMvc — CRUD, validation, JWT, contrôle d'accès
+        (401/403/admin), panier, wishlist.<br>
+        <strong>Front</strong> : Jest — service d'auth, service panier (dont persistance), formulaire contact.</div>
+      <div class="card b"><div class="t">Documentation</div>
+        Swagger interactif (bouton « Authorize » pour tester les routes protégées) + journal de bord détaillé.</div>
+    </div>
+    <div>
+      <div class="card o"><div class="t">Conteneurisation</div>
+        <code>Dockerfile</code> multi-étapes : compilation dans une image JDK, exécution dans une image JRE
+        légère → image finale optimisée.</div>
+      <div class="card v"><div class="t">Déploiement continu</div>
+        Code sur GitHub → Render redéploie automatiquement à chaque push.
+        Back (Docker) + Front (site statique) en ligne, accessibles par lien.</div>
+      <div class="card b"><div class="t">CORS &amp; environnements</div>
+        Proxy en dev, CORS + URL d'API par environnement en prod.</div>
+    </div>
+  </div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">7</div>
+</section>
+
+<!-- ================= SLIDE 8 — DÉMO ================= -->
+<section class="slide">
+  <h2>7. Démonstration — parcours proposé</h2>
+  <ol style="font-size:13pt;line-height:1.7">
+    <li>Ouvrir <code>alten-shop.onrender.com</code> → redirection automatique vers <strong>/login</strong>
+        (connexion imposée).</li>
+    <li>Se connecter en <strong>admin</strong> (<code>admin@admin.com</code>) → la liste des produits du back s'affiche.</li>
+    <li>Montrer la <strong>recherche / le filtre par catégorie</strong> et la <strong>pagination</strong>.</li>
+    <li>Ajouter des produits au <strong>panier</strong> → le <strong>badge</strong> s'incrémente ; ouvrir le panier,
+        ajuster les quantités.</li>
+    <li><strong>Rafraîchir la page</strong> → le panier est toujours là (persistance).</li>
+    <li>En admin : <strong>créer / modifier / supprimer</strong> un produit (boutons visibles).</li>
+    <li>Se déconnecter, créer un <strong>compte simple</strong> → les boutons de gestion <strong>disparaissent</strong>
+        (sécurité).</li>
+    <li>Page <strong>Contact</strong> : validation du formulaire + message de succès.</li>
+    <li>Montrer <strong>Swagger</strong> : tester une route protégée avec le token.</li>
+  </ol>
+  <div class="card b"><strong>Astuce :</strong> ouvrir le lien ~1 min avant pour « réveiller » le serveur gratuit.</div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">8</div>
+</section>
+
+<!-- ================= SLIDE 9 — DIFFICULTÉS ================= -->
+<section class="slide">
+  <h2>8. Difficultés rencontrées &amp; solutions</h2>
+  <table>
+    <tr><th>Problème</th><th>Solution apportée</th></tr>
+    <tr><td>Spring Boot 4 utilise <strong>Jackson 3</strong> (nouveau namespace)</td><td>Adaptation des imports — code aligné sur la toute dernière version</td></tr>
+    <tr><td><strong>Karma</strong> (tests Angular) est déprécié et absent du projet</td><td>Migration vers <strong>Jest</strong> (moderne, rapide, sans navigateur)</td></tr>
+    <tr><td>Un refus <code>403</code> était transformé à tort en <code>401</code></td><td>Cause : re-contrôle de la page d'erreur interne ; exclusion des dispatch <code>ERROR</code>/<code>FORWARD</code></td></tr>
+    <tr><td>Render impose le port via <code>$PORT</code></td><td>Port rendu dynamique : <code>server.port=${PORT:8081}</code></td></tr>
+    <tr><td>Le panier disparaissait au rechargement</td><td>Persistance dans le <code>localStorage</code></td></tr>
+    <tr><td>Un non-admin voyait les boutons de gestion (faux succès)</td><td>Boutons masqués + remontée réelle des erreurs serveur (toast)</td></tr>
+  </table>
+  <p class="big">→ Chaque problème a été <strong>diagnostiqué puis vérifié en conditions réelles</strong>, pas seulement en test.</p>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">9</div>
+</section>
+
+<!-- ================= SLIDE 10 — BILAN ================= -->
+<section class="slide">
+  <h2>9. Bilan &amp; pistes d'amélioration</h2>
+  <div class="grid2">
+    <div>
+      <h3>Couverture du sujet</h3>
+      <table>
+        <tr><th>Exigence</th><th></th></tr>
+        <tr><td>Front Partie 1 (Shop)</td><td class="ok">✔</td></tr>
+        <tr><td>Front Partie 2 (Contact)</td><td class="ok">✔</td></tr>
+        <tr><td>Back Partie 1 (CRUD)</td><td class="ok">✔</td></tr>
+        <tr><td>Back Partie 2 (JWT, admin, panier, wishlist)</td><td class="ok">✔</td></tr>
+        <tr><td>Bonus (pagination, quantités, Swagger, tests)</td><td class="ok">✔</td></tr>
+      </table>
+    </div>
+    <div>
+      <h3>Pistes d'amélioration</h3>
+      <ul>
+        <li>Brancher le panier front sur l'API panier du back (persistance multi-appareils)</li>
+        <li>Externaliser le secret JWT et le mot de passe admin en variables d'environnement</li>
+        <li>Base PostgreSQL persistante (ex : via le profil prod)</li>
+        <li>Pipeline CI : exécuter les tests automatiquement à chaque push</li>
+        <li>Pagination/filtrage côté serveur pour de gros volumes</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-brand">ALTEN SHOP</div><div class="pagenum">10</div>
+</section>
+
+<!-- ================= SLIDE 11 — MERCI ================= -->
+<section class="slide cover">
+  <div class="kicker" style="color:#cfe0f7">Merci de votre attention</div>
+  <h1>Questions ?</h1>
+  <div class="tags" style="margin-top:30px">
+    <span class="tag">Démo : alten-shop.onrender.com</span>
+    <span class="tag">Code : github.com/anas34b/alten-shop</span>
+  </div>
+  <p style="margin-top:30px;color:#cfe0f7">admin@admin.com / admin123</p>
+</section>
+
+</body>
+</html>
