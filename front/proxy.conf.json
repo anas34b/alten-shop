@@ -1,0 +1,19 @@
+{
+  "//": "Redirige les appels API du front (localhost:4200) vers le back Spring (localhost:8081).",
+  "//2": "Evite les problemes de CORS en developpement : pour le navigateur, tout vient de :4200.",
+  "/api": {
+    "target": "http://localhost:8081",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/token": {
+    "target": "http://localhost:8081",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/account": {
+    "target": "http://localhost:8081",
+    "secure": false,
+    "changeOrigin": true
+  }
+}

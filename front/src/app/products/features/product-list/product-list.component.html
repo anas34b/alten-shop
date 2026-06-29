@@ -1,0 +1,93 @@
+<!-- Zone d'affichage des notifications (toast "ajoute au panier") -->
+<p-toast />
+
+<h1 class="text-center">Liste des produits</h1>
+
+<div class="text-center mb-3">
+    <p-button label="Créer produit" icon="pi pi-plus" (onClick)="onCreate()" />
+</div>
+
+<!-- Barre de filtres (bonus) : recherche par nom + filtre par categorie -->
+<div class="flex flex-wrap gap-3 justify-content-center align-items-center mb-3">
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input pInputText type="text" placeholder="Rechercher un produit..."
+               [ngModel]="searchTerm()" (ngModelChange)="searchTerm.set($event)" />
+    </span>
+    <p-dropdown [options]="categories()" [ngModel]="selectedCategory()"
+                (ngModelChange)="selectedCategory.set($event)"
+                placeholder="Toutes les catégories" [showClear]="true"
+                styleClass="w-15rem" />
+</div>
+
+<!-- p-dataView : liste paginee. [value] = produits filtres ; [rows] = nb par page.
+     Le template "list" recoit la PAGE courante de produits. -->
+<p-dataView #dv [value]="filteredProducts()" [paginator]="true" [rows]="8">
+    <ng-template pTemplate="list" let-products>
+        <div class="grid">
+            @for (product of products; track product.id) {
+                <div class="col-12 sm:col-6 lg:col-4 xl:col-3 p-2">
+                    <div class="product-card flex flex-column h-full surface-card border-round p-3">
+
+                        <!-- Image du produit -->
+                        <div class="flex justify-content-center mb-3">
+                            <img [src]="imageBaseUrl + product.image"
+                                 [alt]="product.name"
+                                 class="product-image" />
+                        </div>
+
+                        <!-- Categorie + nom -->
+                        <span class="text-sm text-color-secondary">{{ product.category }}</span>
+                        <div class="text-lg font-semibold mt-1">{{ product.name }}</div>
+
+                        <!-- Description (limitee a 2 lignes via le CSS) -->
+                        <p class="text-sm text-color-secondary description my-2">{{ product.description }}</p>
+
+                        <!-- Note en etoiles (lecture seule) -->
+                        <p-rating [(ngModel)]="product.rating" [readonly]="true" [cancel]="false" />
+
+                        <!-- Prix + badge de stock colore -->
+                        <div class="flex align-items-center justify-content-between mt-3 mb-3">
+                            <span class="text-xl font-bold">
+                                {{ product.price | currency:'EUR':'symbol':'1.2-2':'fr-FR' }}
+                            </span>
+                            <p-tag [value]="stockLabel(product.inventoryStatus)"
+                                   [severity]="stockSeverity(product.inventoryStatus)" />
+                        </div>
+
+                        <!-- Bouton principal : ajouter au panier -->
+                        <p-button label="Ajouter au panier" icon="pi pi-shopping-cart"
+                                  styleClass="w-full mt-auto mb-2"
+                                  [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
+                                  (onClick)="onAddToCart(product)" />
+
+                        <!-- Actions CRUD existantes -->
+                        <div class="flex gap-2">
+                            <p-button label="Modifier" severity="secondary" size="small"
+                                      styleClass="flex-1" (onClick)="onUpdate(product)" />
+                            <p-button label="Supprimer" severity="danger" size="small"
+                                      styleClass="flex-1" (onClick)="onDelete(product)" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </ng-template>
+
+    <!-- Affiche si aucun produit ne correspond aux filtres -->
+    <ng-template pTemplate="empty">
+        <div class="text-center p-5 text-color-secondary">
+            <i class="pi pi-search mr-2"></i> Aucun produit ne correspond à votre recherche.
+        </div>
+    </ng-template>
+</p-dataView>
+
+<p-dialog [(visible)]="isDialogVisible"
+    [style]="{ width: '50vw' }"
+    header="Ajout/Edition produit">
+    <app-product-form
+        [product]="editedProduct()"
+        (save)="onSave($event)"
+        (cancel)="onCancel()"
+    />
+</p-dialog>

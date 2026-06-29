@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ALTEN SHOP — État des lieux du projet</title>
+<style>
+  :root{
+    --bleu:#1B3A6B; --bleu2:#2E5FA3; --bleuclair:#E8F0FB;
+    --vert:#1E6B3C; --vertclair:#E8F5EE;
+    --rouge:#C0392B; --rougeclair:#FDECEA;
+    --orange:#B9560D; --orangeclair:#FBEEE3;
+    --gris:#5A6472; --grisclair:#F4F6F9; --bord:#D8DEE7;
+    --jaune:#8A6D00; --jauneclair:#FCF6E1;
+  }
+  *{box-sizing:border-box}
+  html{font-size:13px}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;
+    color:#1c2430; line-height:1.5; margin:0;
+  }
+  .page{max-width:900px;margin:0 auto;padding:0 6mm}
+  h1{color:var(--bleu);font-size:2rem;margin:0 0 4px}
+  h2{color:var(--bleu);font-size:1.35rem;border-bottom:3px solid var(--bleu2);
+     padding-bottom:5px;margin:30px 0 12px}
+  h3{color:var(--bleu2);font-size:1.08rem;margin:20px 0 6px}
+  h4{color:var(--gris);font-size:.98rem;margin:14px 0 4px;text-transform:uppercase;letter-spacing:.5px}
+  p{margin:7px 0}
+  ul,ol{margin:7px 0;padding-left:22px}
+  li{margin:3px 0}
+  code{background:var(--grisclair);border:1px solid var(--bord);border-radius:3px;
+       padding:1px 5px;font-family:'Consolas','Courier New',monospace;font-size:.85em;color:#2b3a4d}
+  pre{background:#0f1b2d;color:#dfe8f4;border-radius:6px;padding:12px 14px;overflow:auto;
+      font-family:'Consolas','Courier New',monospace;font-size:.8rem;line-height:1.45}
+  pre code{background:none;border:none;color:inherit;padding:0}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.86rem}
+  th,td{border:1px solid var(--bord);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:var(--bleu);color:#fff;font-weight:600}
+  tr:nth-child(even) td{background:var(--grisclair)}
+  .lead{font-size:1.05rem;color:var(--gris);margin:6px 0 0}
+  .cover{padding:60px 0 30px;border-bottom:4px solid var(--bleu)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;border-radius:4px;padding:2px 8px;margin:2px 4px 2px 0}
+  .tag-blue{background:var(--bleuclair);color:var(--bleu)}
+  .tag-green{background:var(--vertclair);color:var(--vert)}
+  .tag-red{background:var(--rougeclair);color:var(--rouge)}
+  .tag-orange{background:var(--orangeclair);color:var(--orange)}
+  .box{border:1px solid var(--bord);border-left:5px solid var(--bleu2);
+       background:var(--grisclair);border-radius:5px;padding:10px 14px;margin:12px 0}
+  .box.ok{border-left-color:var(--vert);background:var(--vertclair)}
+  .box.warn{border-left-color:var(--orange);background:var(--orangeclair)}
+  .box.danger{border-left-color:var(--rouge);background:var(--rougeclair)}
+  .box.info{border-left-color:var(--bleu2);background:var(--bleuclair)}
+  .box .t{font-weight:700;margin-bottom:4px}
+  .ok-i{color:var(--vert);font-weight:700}
+  .no-i{color:var(--rouge);font-weight:700}
+  .meta{color:var(--gris);font-size:.85rem}
+  .grid2{display:flex;gap:14px}
+  .grid2>div{flex:1}
+  .arch{font-family:'Consolas',monospace;font-size:.78rem;white-space:pre;line-height:1.3;
+        background:var(--grisclair);border:1px solid var(--bord);border-radius:6px;padding:14px}
+  .small{font-size:.8rem;color:var(--gris)}
+  @page{size:A4;margin:14mm 12mm}
+  h2,h3{break-after:avoid}
+  table,pre,.box,.arch{break-inside:avoid}
+  .pb{break-before:page}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="meta">DOCUMENT 1 / 2 &nbsp;•&nbsp; Préparation entretien technique</div>
+    <h1>ALTEN SHOP — État des lieux du projet</h1>
+    <p class="lead">Analyse de l'existant : code fourni, technologies, architecture et fonctionnement actuel.</p>
+    <p>
+      <span class="tag tag-blue">Angular 18</span>
+      <span class="tag tag-blue">PrimeNG 17</span>
+      <span class="tag tag-blue">TypeScript 5.4</span>
+      <span class="tag tag-green">Signals</span>
+      <span class="tag tag-green">Standalone components</span>
+      <span class="tag tag-orange">Back-end : vide</span>
+    </p>
+  </div>
+
+  <h2>1. Contexte &amp; objectif</h2>
+  <p>
+    Le dépôt est un <strong>test technique de recrutement ALTEN</strong>. La consigne (fichier
+    <code>README.md</code> à la racine) décrit un mini site e-commerce, « ALTEN SHOP », pour lequel
+    le candidat doit compléter un front-end Angular et/ou créer un back-end de gestion de produits.
+  </p>
+  <p>Trois profils sont prévus dans la consigne :</p>
+  <ul>
+    <li><strong>Front-end</strong> : enrichir l'application Angular fournie (panier, page contact, etc.).</li>
+    <li><strong>Back-end</strong> : développer une API de gestion de produits (techno au choix) + authentification.</li>
+    <li><strong>Full-stack</strong> : les deux, avec en plus une stratégie de test de l'API.</li>
+  </ul>
+  <div class="box info">
+    <div class="t">À retenir pour l'entretien</div>
+    Le projet livré est un <strong>squelette de départ</strong> : seul le front est amorcé (CRUD produit
+    partiel), et le back-end n'existe pas encore. Le travail attendu consiste à compléter ce socle.
+  </div>
+
+  <h2>2. Structure du dépôt</h2>
+  <div class="arch">product-trial-master/
+├── README.md                ← cahier des charges (consignes ALTEN)
+├── biome.json               ← config lint + formatage (Biome, racine partagée)
+├── back/
+│   └── .gitkeep             ← DOSSIER VIDE — back-end à créer
+└── front/                   ← application Angular 18 (le code existant)
+    ├── angular.json          ← config build/serve (configs: mock, production)
+    ├── package.json          ← dépendances + scripts (ng, start)
+    └── src/
+        ├── index.html, main.ts, polyfills.ts, manifest.webmanifest
+        ├── environments/      ← environment.ts (production:false)
+        ├── locale/            ← i18n : translations fr-FR + en-GB (.xlf)
+        ├── styles/            ← thèmes light.css / dark.css, variables.scss, fonts Roboto
+        ├── assets/
+        │   ├── products.json  ← 30 produits mockés (données de démo)
+        │   └── icons/         ← icônes PWA (72→512 px)
+        └── app/
+            ├── app.component.*       ← layout (toolbar + splitter + menu)
+            ├── app.routes.ts         ← routing racine (home, products, lazy)
+            ├── products/
+            │   ├── data-access/      ← product.model.ts + products.service.ts
+            │   ├── features/product-list/  ← page liste + CRUD
+            │   ├── ui/product-form/  ← formulaire (dialog ajout/édition)
+            │   └── products.routes.ts
+            └── shared/
+                ├── features/home/    ← page d'accueil
+                └── ui/panel-menu/    ← menu latéral</div>
+
+  <h2>3. Stack technique (versions exactes)</h2>
+  <table>
+    <tr><th>Domaine</th><th>Technologie</th><th>Version</th><th>Rôle dans le projet</th></tr>
+    <tr><td>Framework front</td><td>Angular</td><td>18.0.2</td><td>SPA, composants standalone, routing, DI</td></tr>
+    <tr><td>Langage</td><td>TypeScript</td><td>5.4.5</td><td>Typage statique de tout le front</td></tr>
+    <tr><td>Librairie UI</td><td>PrimeNG</td><td>17.18.0</td><td>Composants : Toolbar, Splitter, Card, DataView, Dialog, Dropdown, Inputs, PanelMenu, Button</td></tr>
+    <tr><td>CSS utilitaire</td><td>PrimeFlex</td><td>3.3.1</td><td>Classes utilitaires (flex, gap, text-center…)</td></tr>
+    <tr><td>Icônes</td><td>PrimeIcons</td><td>7.0.0</td><td>Pictogrammes (pi pi-shopping-cart…)</td></tr>
+    <tr><td>Réactivité</td><td>RxJS</td><td>7.8.1</td><td>Observables pour les appels HTTP</td></tr>
+    <tr><td>État (state)</td><td>Angular Signals</td><td>(natif 18)</td><td>Stockage réactif des produits dans le service</td></tr>
+    <tr><td>Graphiques</td><td>Chart.js</td><td>3.3.2</td><td>Inclus mais non utilisé pour l'instant</td></tr>
+    <tr><td>Éditeur riche</td><td>Quill</td><td>1.3.7</td><td>Inclus mais non utilisé pour l'instant</td></tr>
+    <tr><td>PWA</td><td>@angular/service-worker</td><td>18.0.2</td><td>Service worker activé (ngsw-config.json)</td></tr>
+    <tr><td>i18n</td><td>@angular/localize</td><td>18.0.2</td><td>Traductions fr-FR / en-GB</td></tr>
+    <tr><td>Lint / Format</td><td>Biome</td><td>1.7.2</td><td>Remplace ESLint+Prettier (config à la racine)</td></tr>
+    <tr><td>Runtime</td><td>Node.js</td><td>v22.13 (local)</td><td>Build et serveur de dev Angular</td></tr>
+  </table>
+  <div class="box warn">
+    <div class="t">Détail qui peut être relevé en entretien</div>
+    <code>chart.js</code> et <code>quill</code> sont déclarés dans <code>package.json</code> et chargés dans
+    <code>angular.json</code> (section <code>scripts</code>) mais ne sont <strong>pas encore utilisés</strong>
+    dans le code. Ce sont des dépendances « prêtes à l'emploi » du template de départ.
+  </div>
+
+  <h2>4. Architecture front-end</h2>
+  <p>L'application suit un découpage <strong>par fonctionnalité (feature)</strong> avec une convention
+     de couches qui rappelle les bonnes pratiques Angular modernes :</p>
+  <table>
+    <tr><th>Couche</th><th>Dossier</th><th>Responsabilité</th></tr>
+    <tr><td><strong>data-access</strong></td><td>products/data-access</td><td>Modèles (<code>product.model.ts</code>) et service de données (<code>products.service.ts</code>) — communication HTTP + état</td></tr>
+    <tr><td><strong>features</strong></td><td>products/features, shared/features</td><td>Composants « pages » intelligents, routés (product-list, home)</td></tr>
+    <tr><td><strong>ui</strong></td><td>products/ui, shared/ui</td><td>Composants présentationnels réutilisables (product-form, panel-menu)</td></tr>
+    <tr><td><strong>shared</strong></td><td>shared/</td><td>Éléments transverses (accueil, menu de navigation)</td></tr>
+  </table>
+
+  <h3>Layout global</h3>
+  <p>Défini dans <code>app.component.html</code> : une <strong>toolbar</strong> en haut (logo + titre
+     « ALTEN SHOP » + icône panier statique), puis un <strong>splitter</strong> 20 % / 80 % : menu latéral
+     à gauche (<code>app-panel-menu</code>), contenu routé à droite (<code>router-outlet</code>).</p>
+
+  <h3>Routage &amp; lazy loading</h3>
+  <pre><code>// app.routes.ts
+home      → HomeComponent (chargement direct)
+products  → loadChildren(...products.routes)   // chargé à la demande
+""        → redirige vers home
+
+// products.routes.ts
+products/list → ProductListComponent
+products/**   → redirige vers list</code></pre>
+  <p>Le module produits est <strong>chargé paresseusement</strong> (<code>loadChildren</code>), bonne
+     pratique pour le découpage du bundle. Le menu (<code>panel-menu.component.ts</code>) expose deux
+     entrées : <em>Accueil</em> (<code>/home</code>) et <em>Produits</em> (<code>/products/list</code>).</p>
+
+  <h2 class="pb">5. Détail des composants existants</h2>
+  <table>
+    <tr><th>Composant</th><th>Type</th><th>Ce qu'il fait</th></tr>
+    <tr><td><code>AppComponent</code></td><td>racine, standalone</td><td>Layout (toolbar + splitter + menu + outlet). Titre « ALTEN SHOP ».</td></tr>
+    <tr><td><code>HomeComponent</code></td><td>feature</td><td>Simple carte « Bienvenue sur ALTEN SHOP ! ». Page d'accueil minimale.</td></tr>
+    <tr><td><code>PanelMenuComponent</code></td><td>ui</td><td>Menu latéral PrimeNG avec 2 liens (Accueil, Produits).</td></tr>
+    <tr><td><code>ProductListComponent</code></td><td>feature</td><td>Page liste produits + orchestration du CRUD (création, édition, suppression via dialog).</td></tr>
+    <tr><td><code>ProductFormComponent</code></td><td>ui</td><td>Formulaire d'ajout/édition (nom, prix, description, catégorie) dans un dialog.</td></tr>
+  </table>
+
+  <h3>ProductListComponent — le cœur fonctionnel actuel</h3>
+  <ul>
+    <li>Au <code>ngOnInit</code>, appelle <code>productsService.get()</code> pour charger la liste.</li>
+    <li>Affiche les produits via un <code>p-dataView</code> + <code>p-card</code> : <strong>seulement
+        la catégorie et le nom</strong> sont affichés (prix, image, stock… non affichés).</li>
+    <li>Boutons <em>Créer</em>, <em>Modifier</em>, <em>Supprimer</em> ; le formulaire s'ouvre dans un
+        <code>p-dialog</code>.</li>
+    <li>Gère un signal <code>editedProduct</code> et deux drapeaux (<code>isDialogVisible</code>,
+        <code>isCreation</code>) pour distinguer création et édition.</li>
+  </ul>
+
+  <h3>ProductFormComponent — formulaire</h3>
+  <ul>
+    <li>Reçoit le produit via <code>input.required&lt;Product&gt;()</code> (nouvelle API de signaux d'input).</li>
+    <li>Émet <code>save</code> et <code>cancel</code> via <code>@Output</code>.</li>
+    <li>Travaille sur une <strong>copie</strong> : <code>editedProduct = computed(() =&gt; ({...product()}))</code>
+        — évite de muter directement l'objet parent.</li>
+    <li>Champs gérés : nom (requis), prix (requis), description, catégorie (dropdown figé :
+        Accessories / Fitness / Clothing / Electronics).</li>
+  </ul>
+  <div class="box warn">
+    <div class="t">Point d'attention technique</div>
+    Le formulaire ne couvre que 4 champs sur les 14 du modèle <code>Product</code> (pas de
+    <code>code</code>, <code>image</code>, <code>quantity</code>, <code>inventoryStatus</code>,
+    <code>rating</code>, etc.). À compléter selon les besoins du back-end.
+  </div>
+
+  <h2>6. Gestion de l'état — Signals + Service</h2>
+  <p>Le <code>ProductsService</code> (fourni <code>providedIn:'root'</code>, donc singleton) centralise
+     l'état avec un <strong>signal privé</strong> exposé en lecture seule :</p>
+  <pre><code>private readonly _products = signal&lt;Product[]&gt;([]);
+public  readonly products  = this._products.asReadonly();</code></pre>
+  <p>Quatre méthodes HTTP, chacune mettant à jour le signal local après l'appel :</p>
+  <table>
+    <tr><th>Méthode</th><th>Appel HTTP</th><th>Comportement</th></tr>
+    <tr><td><code>get()</code></td><td>GET <code>/api/products</code></td><td>Si échec → <strong>fallback</strong> sur <code>assets/products.json</code>. Remplit le signal.</td></tr>
+    <tr><td><code>create()</code></td><td>POST <code>/api/products</code></td><td>Si échec → renvoie <code>true</code>. Ajoute le produit en tête de liste.</td></tr>
+    <tr><td><code>update()</code></td><td>PATCH <code>/api/products/:id</code></td><td>Si échec → renvoie <code>true</code>. Remplace le produit dans la liste.</td></tr>
+    <tr><td><code>delete()</code></td><td>DELETE <code>/api/products/:id</code></td><td>Si échec → renvoie <code>true</code>. Retire le produit de la liste.</td></tr>
+  </table>
+  <div class="box danger">
+    <div class="t">Piège à connaître (question probable du recruteur)</div>
+    Le <code>catchError</code> de <code>create/update/delete</code> <strong>masque les erreurs réseau</strong>
+    et renvoie toujours « succès », puis met quand même à jour l'état local (mise à jour
+    « optimiste »). C'est pratique pour démonter le front <em>sans</em> back-end (tout marche en mémoire),
+    mais en production cela ferait croire à l'utilisateur qu'un enregistrement a réussi alors qu'il a
+    échoué. À corriger une fois le vrai back branché.
+  </div>
+
+  <h2>7. Modèle de données</h2>
+  <div class="grid2">
+    <div>
+      <pre><code>interface Product {
+  id: number;
+  code: string;
+  name: string;
+  description: string;
+  image: string;
+  category: string;
+  price: number;
+  quantity: number;
+  internalReference: string;
+  shellId: number;
+  inventoryStatus:
+    "INSTOCK"|"LOWSTOCK"|"OUTOFSTOCK";
+  rating: number;
+  createdAt: number;
+  updatedAt: number;
+}</code></pre>
+    </div>
+    <div>
+      <p>Le modèle <code>Product</code> (côté front) est <strong>identique</strong> à celui imposé par la
+         consigne back-end du README. C'est le contrat partagé entre front et futur back.</p>
+      <p>Les données de démo (<code>assets/products.json</code>) contiennent <strong>30 produits</strong>
+         (montres, vêtements, accessoires…) avec ces champs renseignés, ids à partir de
+         <code>1000</code>.</p>
+      <p class="small">Note : <code>quantity</code> existe dans le modèle mais n'est pas affiché ni édité
+         actuellement — utile pour le futur panier et la gestion de stock.</p>
+    </div>
+  </div>
+
+  <h2 class="pb">8. Outillage &amp; configuration</h2>
+  <table>
+    <tr><th>Élément</th><th>Détail</th></tr>
+    <tr><td><strong>Scripts npm</strong></td><td><code>npm start</code> = <code>ng serve</code> (serveur de dev). Pas de script de build/test explicite ajouté.</td></tr>
+    <tr><td><strong>Configs de build</strong></td><td><code>mock</code> (remplace l'environnement par <code>environment.mock.ts</code>) et <code>production</code> (optimisation, hashing, budgets 2 Mo / 6 Mo).</td></tr>
+    <tr><td><strong>Lint / Format</strong></td><td>Biome (<code>biome.json</code>) — alternative tout-en-un à ESLint + Prettier, indentation espaces, point-virgules obligatoires.</td></tr>
+    <tr><td><strong>PWA</strong></td><td>Service worker activé (<code>serviceWorker:true</code>, <code>ngsw-config.json</code>) + manifest + icônes 72→512 px. App installable.</td></tr>
+    <tr><td><strong>i18n</strong></td><td>Locale fr enregistrée dans <code>main.ts</code> ; fichiers de traduction <code>fr-FR</code> et <code>en-GB</code>.</td></tr>
+    <tr><td><strong>Thèmes</strong></td><td>Deux thèmes PrimeNG (<code>light</code> / <code>dark</code> deeppurple) chargeables dynamiquement (<code>inject:false</code>).</td></tr>
+    <tr><td><strong>Providers globaux</strong></td><td><code>main.ts</code> : HttpClient, animations, router, et services PrimeNG (<code>MessageService</code>, <code>ConfirmationService</code>, <code>DialogService</code>) — prêts pour les toasts/confirmations.</td></tr>
+  </table>
+  <div class="box info">
+    <div class="t">Opportunité visible</div>
+    <code>MessageService</code> et <code>ConfirmationService</code> sont déjà fournis globalement : on
+    pourra afficher des <em>toasts</em> (« Demande de contact envoyée avec succès », confirmation de
+    suppression…) sans configuration supplémentaire.
+  </div>
+
+  <h2>9. Le back-end</h2>
+  <div class="box danger">
+    <div class="t">État : inexistant</div>
+    Le dossier <code>back/</code> ne contient qu'un fichier <code>.gitkeep</code> (placeholder Git).
+    <strong>Aucune ligne de code serveur.</strong> Tout est à créer : techno, API, base de données,
+    authentification.
+  </div>
+  <p>Conséquence : aujourd'hui, l'application fonctionne <strong>uniquement en mode mock</strong>. Les
+     appels <code>/api/...</code> échouent et le service bascule sur le JSON local. La persistance n'est
+     donc pas réelle (rechargement de page = retour aux 30 produits d'origine).</p>
+
+  <h2>10. Récapitulatif : ce qui marche / ce qui manque</h2>
+  <div class="grid2">
+    <div>
+      <h4>Déjà fonctionnel</h4>
+      <ul>
+        <li><span class="ok-i">✔</span> Démarrage de l'app, layout, navigation (Accueil / Produits)</li>
+        <li><span class="ok-i">✔</span> Chargement des produits (fallback JSON)</li>
+        <li><span class="ok-i">✔</span> Affichage liste (nom + catégorie)</li>
+        <li><span class="ok-i">✔</span> Créer / Modifier / Supprimer un produit (en mémoire)</li>
+        <li><span class="ok-i">✔</span> Formulaire dans un dialog</li>
+        <li><span class="ok-i">✔</span> PWA, i18n, thèmes, lint configurés</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Manquant (à développer)</h4>
+      <ul>
+        <li><span class="no-i">✗</span> Panier (service, ajout, suppression, badge, page)</li>
+        <li><span class="no-i">✗</span> Affichage produit complet (prix, image, stock…)</li>
+        <li><span class="no-i">✗</span> Page &amp; menu « Contact » + formulaire validé</li>
+        <li><span class="no-i">✗</span> Pagination / filtrage (bonus)</li>
+        <li><span class="no-i">✗</span> Ajustement des quantités (bonus)</li>
+        <li><span class="no-i">✗</span> <strong>Tout le back-end</strong> (API, JWT, admin, cart, wishlist)</li>
+        <li><span class="no-i">✗</span> Tests (aucun <code>.spec</code> présent)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>11. Points d'attention à savoir défendre en entretien</h2>
+  <table>
+    <tr><th>Sujet</th><th>Ce qu'il faut pouvoir dire</th></tr>
+    <tr><td>Pourquoi des Signals ?</td><td>État réactif natif Angular 16+, plus simple que NgRx pour ce périmètre, granularité fine, pas de boilerplate. Le service expose un état en lecture seule (<code>asReadonly</code>) → encapsulation.</td></tr>
+    <tr><td>Standalone components</td><td>Plus de NgModules : chaque composant déclare ses propres imports. Recommandé depuis Angular 17, simplifie l'arbre de dépendances et le lazy-loading.</td></tr>
+    <tr><td>Le fallback JSON</td><td>Permet de développer le front sans attendre le back. Mais le <code>catchError</code> sur les mutations masque les vraies erreurs → à durcir en prod (remonter l'erreur, toast d'échec).</td></tr>
+    <tr><td>Lazy loading</td><td><code>loadChildren</code> sur la feature produits → le code n'est téléchargé qu'à la navigation. Bon pour le temps de chargement initial.</td></tr>
+    <tr><td>PrimeNG vs maison</td><td>Gain de temps (composants riches accessibles prêts à l'emploi : DataView, Dialog, Dropdown). Cohérent avec un contexte ESN/livraison rapide.</td></tr>
+    <tr><td>Biome</td><td>Outil unique (lint+format) écrit en Rust, très rapide ; remplace ESLint+Prettier. Montre une stack outillage moderne.</td></tr>
+  </table>
+
+  <p class="small" style="margin-top:30px;border-top:1px solid var(--bord);padding-top:8px">
+    Document 1/2 — État des lieux. Voir le document 2 « Attendus &amp; choix techniques » pour le plan
+    de réalisation et les justifications à présenter au recruteur.
+  </p>
+
+</div>
+</body>
+</html>

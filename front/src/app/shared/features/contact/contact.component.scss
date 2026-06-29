@@ -1,0 +1,15 @@
+:host {
+    display: block;
+}
+
+// Carte centree et de largeur limitee pour le formulaire
+::ng-deep .contact-card {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+// Le champ email et le message occupent toute la largeur disponible
+input,
+textarea {
+    width: 100%;
+}

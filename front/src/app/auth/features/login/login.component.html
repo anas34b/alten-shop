@@ -1,0 +1,55 @@
+<p-toast />
+
+<div class="login-wrapper">
+    <p-card [header]="isRegisterMode() ? 'Créer un compte' : 'Connexion'" styleClass="login-card">
+
+        @if (!isRegisterMode()) {
+            <!-- ===== FORMULAIRE DE CONNEXION ===== -->
+            <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="flex flex-column gap-3">
+                <div class="flex flex-column gap-1">
+                    <label for="login-email">Email</label>
+                    <input pInputText id="login-email" type="email" formControlName="email"
+                           placeholder="admin@admin.com" />
+                </div>
+                <div class="flex flex-column gap-1">
+                    <label for="login-password">Mot de passe</label>
+                    <input pInputText id="login-password" type="password" formControlName="password" />
+                </div>
+                <p-button type="submit" label="Se connecter" icon="pi pi-sign-in"
+                          [loading]="loading()" [disabled]="loginForm.invalid" styleClass="w-full" />
+            </form>
+
+            <p class="text-center mt-3 text-sm">
+                Pas encore de compte ?
+                <a class="link" (click)="toggleMode()">Créer un compte</a>
+            </p>
+        } @else {
+            <!-- ===== FORMULAIRE D'INSCRIPTION ===== -->
+            <form [formGroup]="registerForm" (ngSubmit)="onRegister()" class="flex flex-column gap-3">
+                <div class="flex flex-column gap-1">
+                    <label for="reg-username">Nom d'utilisateur</label>
+                    <input pInputText id="reg-username" formControlName="username" />
+                </div>
+                <div class="flex flex-column gap-1">
+                    <label for="reg-firstname">Prénom</label>
+                    <input pInputText id="reg-firstname" formControlName="firstname" />
+                </div>
+                <div class="flex flex-column gap-1">
+                    <label for="reg-email">Email</label>
+                    <input pInputText id="reg-email" type="email" formControlName="email" />
+                </div>
+                <div class="flex flex-column gap-1">
+                    <label for="reg-password">Mot de passe (6 caractères min.)</label>
+                    <input pInputText id="reg-password" type="password" formControlName="password" />
+                </div>
+                <p-button type="submit" label="Créer le compte" icon="pi pi-user-plus"
+                          [loading]="loading()" [disabled]="registerForm.invalid" styleClass="w-full" />
+            </form>
+
+            <p class="text-center mt-3 text-sm">
+                Déjà un compte ?
+                <a class="link" (click)="toggleMode()">Se connecter</a>
+            </p>
+        }
+    </p-card>
+</div>

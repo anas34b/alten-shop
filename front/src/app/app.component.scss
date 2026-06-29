@@ -1,0 +1,19 @@
+.app-content {
+    overflow: hidden;
+    height: 100%;
+}
+
+// Lien autour de l'icone panier : sert de point d'ancrage au badge
+.cart-link {
+    position: relative;
+    display: inline-block;
+    color: inherit;
+    cursor: pointer;
+}
+
+// Badge positionne en haut a droite de l'icone panier
+::ng-deep .cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -10px;
+}

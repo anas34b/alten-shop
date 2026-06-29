@@ -1,0 +1,40 @@
+<p-toolbar [style]="{ height: '100px' }">
+    <div class="p-toolbar-group-start">
+        <img src="assets/icons/icon-72x72.png" alt="logo" />
+    </div>
+    <div class="p-toolbar-group-center">
+        {{ title }}
+    </div>
+    <div class="p-toolbar-group-end flex align-items-center gap-3">
+        @if (isAuthenticated()) {
+            <!-- E-mail de l'utilisateur connecte -->
+            <span class="user-email text-sm">{{ userEmail() }}</span>
+
+            <!-- Icone panier cliquable (lien vers la page panier) + badge du nombre d'articles -->
+            <a routerLink="/cart" class="cart-link" aria-label="Voir le panier">
+                <i class="pi pi-shopping-cart" style="font-size: 2rem"></i>
+                @if (cartCount() > 0) {
+                    <p-badge [value]="cartCount().toString()" severity="danger" styleClass="cart-badge" />
+                }
+            </a>
+
+            <!-- Bouton de deconnexion -->
+            <p-button icon="pi pi-sign-out" severity="secondary" size="small"
+                      (onClick)="logout()" ariaLabel="Déconnexion" />
+        }
+    </div>
+</p-toolbar>
+<p-splitter 
+    [panelSizes]="[20, 80]" 
+    [style]="{ height: 'calc(100vh - 100px)' }">
+    <ng-template pTemplate>
+        <div class="w-full">
+            <app-panel-menu />
+        </div>
+    </ng-template>
+    <ng-template pTemplate>
+        <div class="w-full app-content">
+            <router-outlet></router-outlet>
+        </div>
+    </ng-template>
+</p-splitter>

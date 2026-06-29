@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>ALTEN SHOP — Attendus &amp; choix techniques</title>
+<style>
+  :root{
+    --bleu:#1B3A6B; --bleu2:#2E5FA3; --bleuclair:#E8F0FB;
+    --vert:#1E6B3C; --vertclair:#E8F5EE;
+    --rouge:#C0392B; --rougeclair:#FDECEA;
+    --orange:#B9560D; --orangeclair:#FBEEE3;
+    --gris:#5A6472; --grisclair:#F4F6F9; --bord:#D8DEE7;
+    --violet:#5B3A86; --violetclair:#F0EAF8;
+  }
+  *{box-sizing:border-box}
+  html{font-size:13px}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:#1c2430;line-height:1.5;margin:0}
+  .page{max-width:900px;margin:0 auto;padding:0 6mm}
+  h1{color:var(--bleu);font-size:2rem;margin:0 0 4px}
+  h2{color:var(--bleu);font-size:1.35rem;border-bottom:3px solid var(--bleu2);padding-bottom:5px;margin:30px 0 12px}
+  h3{color:var(--bleu2);font-size:1.08rem;margin:18px 0 6px}
+  h4{color:var(--gris);font-size:.95rem;margin:12px 0 4px}
+  p{margin:7px 0}
+  ul,ol{margin:7px 0;padding-left:22px}
+  li{margin:3px 0}
+  code{background:var(--grisclair);border:1px solid var(--bord);border-radius:3px;padding:1px 5px;font-family:'Consolas','Courier New',monospace;font-size:.85em;color:#2b3a4d}
+  pre{background:#0f1b2d;color:#dfe8f4;border-radius:6px;padding:12px 14px;overflow:auto;font-family:'Consolas','Courier New',monospace;font-size:.78rem;line-height:1.45}
+  pre code{background:none;border:none;color:inherit;padding:0}
+  table{border-collapse:collapse;width:100%;margin:12px 0;font-size:.85rem}
+  th,td{border:1px solid var(--bord);padding:6px 9px;text-align:left;vertical-align:top}
+  th{background:var(--bleu);color:#fff;font-weight:600}
+  tr:nth-child(even) td{background:var(--grisclair)}
+  .lead{font-size:1.05rem;color:var(--gris);margin:6px 0 0}
+  .cover{padding:60px 0 30px;border-bottom:4px solid var(--bleu)}
+  .tag{display:inline-block;font-size:.72rem;font-weight:700;border-radius:4px;padding:2px 8px;margin:2px 4px 2px 0}
+  .tag-blue{background:var(--bleuclair);color:var(--bleu)}
+  .tag-green{background:var(--vertclair);color:var(--vert)}
+  .tag-violet{background:var(--violetclair);color:var(--violet)}
+  .box{border:1px solid var(--bord);border-left:5px solid var(--bleu2);background:var(--grisclair);border-radius:5px;padding:10px 14px;margin:12px 0}
+  .box.ok{border-left-color:var(--vert);background:var(--vertclair)}
+  .box.warn{border-left-color:var(--orange);background:var(--orangeclair)}
+  .box.reco{border-left-color:var(--violet);background:var(--violetclair)}
+  .box.info{border-left-color:var(--bleu2);background:var(--bleuclair)}
+  .box .t{font-weight:700;margin-bottom:4px}
+  .req{border:1px solid var(--bord);border-radius:6px;padding:0;margin:14px 0;overflow:hidden;break-inside:avoid}
+  .req .h{background:var(--bleuclair);color:var(--bleu);font-weight:700;padding:8px 12px;border-bottom:1px solid var(--bord)}
+  .req .b{padding:10px 12px}
+  .pill{display:inline-block;font-size:.68rem;font-weight:700;border-radius:20px;padding:2px 9px;margin-left:6px;vertical-align:middle}
+  .p-todo{background:var(--rougeclair);color:var(--rouge)}
+  .p-partial{background:var(--orangeclair);color:var(--orange)}
+  .p-done{background:var(--vertclair);color:var(--vert)}
+  .small{font-size:.8rem;color:var(--gris)}
+  .meta{color:var(--gris);font-size:.85rem}
+  @page{size:A4;margin:14mm 12mm}
+  h2,h3,.req .h{break-after:avoid}
+  table,pre,.box,.req{break-inside:avoid}
+  .pb{break-before:page}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="cover">
+    <div class="meta">DOCUMENT 2 / 2 &nbsp;•&nbsp; Préparation entretien technique</div>
+    <h1>ALTEN SHOP — Attendus &amp; choix techniques</h1>
+    <p class="lead">Ce que la consigne demande, comment on compte le réaliser, et pourquoi — avec les
+       justifications à présenter au recruteur.</p>
+    <p>
+      <span class="tag tag-blue">Cahier des charges</span>
+      <span class="tag tag-green">Plan de réalisation</span>
+      <span class="tag tag-violet">Justifications techniques</span>
+    </p>
+  </div>
+
+  <h2>0. Comment lire ce document</h2>
+  <p>Chaque exigence du <code>README.md</code> est reprise une à une. Pour chacune :</p>
+  <ul>
+    <li>un rappel de <strong>ce qui est demandé</strong> ;</li>
+    <li>un statut : <span class="pill p-done">FAIT</span> <span class="pill p-partial">PARTIEL</span> <span class="pill p-todo">À FAIRE</span> ;</li>
+    <li><strong>comment on le fait</strong> + le <strong>pourquoi</strong> (l'argument technique).</li>
+  </ul>
+  <div class="box info">
+    <div class="t">Décision structurante recommandée</div>
+    Se positionner en <strong>full-stack</strong> : compléter le front Angular fourni <em>et</em> créer le
+    back-end. C'est l'option qui valorise le plus de compétences et qui rend l'app réellement
+    fonctionnelle (persistance + sécurité). La consigne impose alors une <strong>stratégie de test de
+    l'API</strong>.
+  </div>
+
+  <!-- ===================== FRONT ===================== -->
+  <h2>1. Front-end — Partie 1 : Shop</h2>
+
+  <div class="req">
+    <div class="h">1.1 — Afficher toutes les informations pertinentes d'un produit dans la liste
+      <span class="pill p-partial">PARTIEL</span></div>
+    <div class="b">
+      <p><strong>Existant :</strong> la liste n'affiche que <em>catégorie</em> + <em>nom</em>.</p>
+      <p><strong>Approche :</strong> enrichir le <code>p-card</code> du <code>p-dataView</code> avec image
+         (<code>assets</code> ou URL), prix formaté (<code>| currency:'EUR'</code>), note (<code>p-rating</code>),
+         et un badge de stock coloré à partir de <code>inventoryStatus</code> (vert/orange/rouge via
+         <code>p-tag</code>).</p>
+      <p class="small"><strong>Pourquoi :</strong> on réutilise les composants PrimeNG déjà importés
+         (cohérence visuelle, accessibilité), et le <em>currency pipe</em> Angular gère le formatage
+         localisé (locale fr déjà enregistrée).</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">1.2 — Ajouter un produit au panier depuis la liste <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Approche :</strong> créer un <code>CartService</code> (<code>providedIn:'root'</code>) sur le
+         même patron que <code>ProductsService</code> : un <code>signal&lt;CartItem[]&gt;</code> privé +
+         <code>asReadonly()</code>, et des méthodes <code>addToCart(product)</code>,
+         <code>removeFromCart(id)</code>, <code>updateQuantity(id, q)</code>. Un bouton « Ajouter au
+         panier » sur chaque <code>p-card</code>.</p>
+      <p class="small"><strong>Pourquoi :</strong> rester homogène avec l'architecture existante (Signals +
+         service singleton). Un <code>computed()</code> dérivera le total d'articles et le prix total sans
+         logique dupliquée.</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">1.3 — Supprimer un produit du panier <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Approche :</strong> méthode <code>removeFromCart(id)</code> du <code>CartService</code>
+         (mise à jour du signal), bouton « Supprimer » dans la vue panier.</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">1.4 — Badge indiquant la quantité de produits dans le panier <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Approche :</strong> brancher l'icône panier déjà présente dans la toolbar
+         (<code>app.component.html</code>) sur un <code>p-badge</code> alimenté par un
+         <code>computed(() =&gt; total d'articles)</code> du <code>CartService</code>.</p>
+      <p class="small"><strong>Pourquoi :</strong> l'icône existe déjà → le badge se met à jour
+         automatiquement grâce à la réactivité des signals, sans code impératif.</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">1.5 — Visualiser la liste des produits du panier <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Approche :</strong> nouvelle route <code>/cart</code> + <code>CartComponent</code> affichant
+         les lignes (image, nom, prix unitaire, quantité, sous-total) et le total général. Accès via clic
+         sur l'icône panier (ajouter un <code>routerLink</code>) et/ou une entrée de menu.</p>
+    </div>
+  </div>
+
+  <h2>2. Front-end — Partie 2 : Page Contact</h2>
+  <div class="req">
+    <div class="h">2.1 à 2.5 — Menu + page + formulaire validé <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Demandé :</strong> un point de menu « Contact », une page avec formulaire (email +
+         message), validations (les deux obligatoires, message &lt; 300 caractères), et un message de
+         succès « Demande de contact envoyée avec succès » à l'envoi.</p>
+      <p><strong>Approche :</strong></p>
+      <ul>
+        <li>Ajouter l'entrée <em>Contact</em> dans <code>panel-menu.component.ts</code> (<code>routerLink:['/contact']</code>).</li>
+        <li>Créer <code>ContactComponent</code> (feature) + route <code>/contact</code>.</li>
+        <li>Formulaire avec <strong>Reactive Forms</strong> : <code>Validators.required</code> +
+            <code>Validators.email</code> sur l'email, <code>Validators.required</code> +
+            <code>Validators.maxLength(300)</code> sur le message. Bouton « Envoyer » désactivé tant que le
+            formulaire est invalide.</li>
+        <li>À la soumission : afficher un <strong>toast</strong> via le <code>MessageService</code> PrimeNG
+            (déjà fourni globalement) avec le texte exact demandé.</li>
+      </ul>
+      <p class="small"><strong>Pourquoi Reactive Forms plutôt que template-driven ?</strong> Validation
+         déclarative, testable, et compteur de caractères facile à brancher sur la valeur du contrôle.
+         (Le formulaire produit existant utilise template-driven : on peut assumer ce choix différent en
+         expliquant que Reactive Forms est mieux adapté à des validations multiples.)</p>
+    </div>
+  </div>
+
+  <h2 class="pb">3. Front-end — Bonus</h2>
+  <table>
+    <tr><th>Bonus</th><th>Approche</th><th>Pourquoi</th></tr>
+    <tr>
+      <td>Pagination et/ou filtrage des produits</td>
+      <td>Activer la pagination native du <code>p-dataView</code> (<code>[paginator]="true" [rows]="…"</code>) ; filtrage par nom/catégorie via un <code>signal</code> de critère + <code>computed</code> de liste filtrée.</td>
+      <td>Le <code>p-dataView</code> est déjà en place : pagination « gratuite ». Le filtrage en <code>computed</code> reste réactif et sans effet de bord.</td>
+    </tr>
+    <tr>
+      <td>Ajuster la quantité depuis la liste et le panier</td>
+      <td><code>p-inputNumber</code> avec boutons +/− lié à <code>updateQuantity()</code> du <code>CartService</code>.</td>
+      <td>Composant déjà importé dans le projet (formulaire produit) → réutilisation directe.</td>
+    </tr>
+  </table>
+
+  <!-- ===================== BACK ===================== -->
+  <h2>4. Back-end — Technologie imposée : Java / Spring Boot</h2>
+  <p>La consigne autorise Node/Express, Java/Spring Boot, C#/.NET ou PHP/Symfony (API Platform
+     interdite). <strong>Choix retenu : Java / Spring Boot</strong> (exigence du recruteur).</p>
+  <div class="box reco">
+    <div class="t">Stack Java retenue</div>
+    <table style="margin:6px 0">
+      <tr><th>Brique</th><th>Outil</th><th>Rôle</th></tr>
+      <tr><td>Framework</td><td>Spring Boot 3.x (Java 17+)</td><td>Socle de l'application, auto-configuration, serveur Tomcat embarqué</td></tr>
+      <tr><td>API REST</td><td>Spring Web (<code>spring-boot-starter-web</code>)</td><td>Contrôleurs <code>@RestController</code>, mapping des routes</td></tr>
+      <tr><td>Persistance</td><td>Spring Data JPA / Hibernate</td><td>Entités <code>@Entity</code> + <code>Repository</code> (CRUD sans SQL manuel)</td></tr>
+      <tr><td>Base de données</td><td>H2 (dev) → PostgreSQL (prod)</td><td>H2 en mémoire pour démarrer vite ; PostgreSQL pour une base « sérieuse »</td></tr>
+      <tr><td>Sécurité</td><td>Spring Security + JWT (<code>jjwt</code>)</td><td>Filtre d'authentification, hachage, protection des routes</td></tr>
+      <tr><td>Validation</td><td>Bean Validation (<code>jakarta.validation</code>)</td><td>Annotations <code>@NotNull</code>, <code>@Email</code>, <code>@Size</code> sur les DTO</td></tr>
+      <tr><td>Documentation</td><td>springdoc-openapi (Swagger UI)</td><td>Doc interactive générée automatiquement</td></tr>
+      <tr><td>Tests</td><td>JUnit 5 + Mockito + MockMvc</td><td>Tests unitaires et d'intégration des endpoints</td></tr>
+      <tr><td>Build</td><td>Maven (ou Gradle)</td><td>Gestion des dépendances et build (<code>mvn spring-boot:run</code>)</td></tr>
+    </table>
+  </div>
+  <div class="box info">
+    <div class="t">Arguments à présenter à l'oral</div>
+    <ul>
+      <li><strong>Standard d'entreprise</strong> : Spring Boot est la référence Java pour les API REST,
+          écosystème mature et très demandé en ESN.</li>
+      <li><strong>Architecture en couches claire</strong> : <code>Controller → Service → Repository → Entity</code>,
+          séparation des responsabilités, testable.</li>
+      <li><strong>Sécurité robuste</strong> : Spring Security est éprouvé pour le JWT et le contrôle d'accès,
+          plutôt que de réécrire l'authentification à la main.</li>
+    </ul>
+  </div>
+  <div class="box warn">
+    <div class="t">Organisation dans le dépôt</div>
+    Le projet Spring Boot vivra dans le dossier <code>back/</code> (aujourd'hui vide). Structure type :
+    <code>back/src/main/java/com/alten/shop/</code> avec les sous-packages <code>controller</code>,
+    <code>service</code>, <code>repository</code>, <code>entity</code>, <code>dto</code>,
+    <code>security</code>, <code>config</code> ; et <code>back/src/main/resources/application.yml</code>
+    pour la config (datasource, secret JWT).
+  </div>
+
+  <h3>Persistance des données</h3>
+  <table>
+    <tr><th>Option</th><th>Quand la choisir</th></tr>
+    <tr><td><strong>H2 (base SQL en mémoire/fichier)</strong></td><td><em>Recommandé pour démarrer.</em> Zéro installation, intégré à Spring Boot, console web pour inspecter les données. Parfait pour une démo et les tests.</td></tr>
+    <tr><td><strong>PostgreSQL</strong></td><td>Pour une base « production » crédible. Nécessite un serveur (ou Docker). On peut basculer H2→PostgreSQL en changeant uniquement <code>application.yml</code> grâce à JPA.</td></tr>
+    <tr><td>Fichier JSON</td><td>Autorisé par la consigne, mais on perd tout l'intérêt de JPA (relations users↔cart↔products, requêtes). À éviter avec Spring.</td></tr>
+  </table>
+  <p class="small"><strong>Pourquoi JPA/Hibernate :</strong> on décrit les tables comme des classes Java
+     annotées (<code>@Entity</code>) et Spring génère le CRUD et le schéma automatiquement — on se concentre
+     sur le métier, pas sur le SQL.</p>
+
+  <h2>5. Back-end — Partie 1 : API de gestion des produits</h2>
+  <div class="req">
+    <div class="h">CRUD Produits <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Demandé :</strong> gérer les produits (modèle <code>Product</code> imposé) en base.</p>
+      <p><strong>Endpoints REST à exposer :</strong></p>
+      <pre><code>GET    /products        liste de tous les produits
+GET    /products/:id    détail d'un produit
+POST   /products        création          (admin only)
+PATCH  /products/:id    mise à jour        (admin only)
+DELETE /products/:id    suppression        (admin only)</code></pre>
+      <p><strong>Détails :</strong> <code>createdAt</code>/<code>updatedAt</code> gérés côté serveur
+         (callbacks JPA <code>@PrePersist</code>/<code>@PreUpdate</code>), validation des champs entrants
+         (DTO + Bean Validation : <code>@NotBlank</code>, <code>@Positive</code>…), codes HTTP corrects
+         (201 création, 404 introuvable via <code>@ResponseStatus</code>/exception handler, 400 payload
+         invalide).</p>
+      <p class="small"><strong>Mise en œuvre Spring :</strong> entité <code>Product</code> annotée
+         <code>@Entity</code>, interface <code>ProductRepository extends JpaRepository&lt;Product,Long&gt;</code>
+         (CRUD fourni), <code>ProductService</code> pour le métier, <code>ProductController</code> pour les
+         routes REST.</p>
+      <p class="small"><strong>Cohérence front :</strong> le service Angular appelle déjà
+         <code>/api/products</code> en GET/POST/PATCH/DELETE. Il suffira d'aligner le préfixe (proxy Angular
+         <code>/api</code> → back) pour que le front bascule du mock au vrai back sans refonte.</p>
+    </div>
+  </div>
+
+  <h2>6. Back-end — Partie 2 : Authentification &amp; droits</h2>
+
+  <div class="req">
+    <div class="h">6.1 — Création de compte &amp; connexion JWT <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Demandé :</strong> deux routes —</p>
+      <pre><code>POST /account   { username, firstname, email, password }  → crée l'utilisateur
+POST /token     { email, password }                        → renvoie un JWT</code></pre>
+      <p><strong>Approche (Spring Security) :</strong></p>
+      <ul>
+        <li><strong>Hachage du mot de passe</strong> avec <code>BCryptPasswordEncoder</code> (bean Spring,
+            jamais de mot de passe en clair en base).</li>
+        <li><code>/account</code> : vérifie l'unicité de l'email, encode le mot de passe, enregistre l'utilisateur
+            (entité <code>User</code> + <code>UserRepository</code>).</li>
+        <li><code>/token</code> : retrouve l'utilisateur par email, compare le mot de passe
+            (<code>passwordEncoder.matches</code>), puis génère un <strong>JWT</strong> signé avec la
+            librairie <code>jjwt</code> — claims contenant l'<code>email</code>, un secret défini dans
+            <code>application.yml</code>, et une date d'expiration.</li>
+      </ul>
+      <p class="small"><strong>Pourquoi JWT :</strong> sans état (stateless), le serveur n'a pas à stocker
+         de session ; le front renvoie le token dans l'en-tête <code>Authorization: Bearer …</code>, validé
+         par un filtre Spring Security à chaque requête.</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">6.2 — Protéger l'API (connexion obligatoire) <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Approche :</strong> un <strong>filtre Spring Security</strong>
+         (<code>OncePerRequestFilter</code> ajouté à la <code>SecurityFilterChain</code>) qui extrait et
+         valide le JWT sur les routes protégées, et place l'utilisateur dans le
+         <code>SecurityContext</code>. Côté Angular, un <strong>HTTP interceptor</strong> ajoute
+         automatiquement le header <code>Bearer</code> et gère le 401 (redirection login).</p>
+      <p class="small"><strong>Pourquoi un interceptor :</strong> centralise l'ajout du token → aucun appel
+         HTTP n'a à s'en soucier.</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">6.3 — Seul admin@admin.com peut créer/modifier/supprimer un produit <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Demandé :</strong> solution « simple et générique », sans gestion de rôles complète.</p>
+      <p><strong>Approche :</strong> après validation du JWT, on vérifie que l'<code>email</code> du token
+         vaut <code>admin@admin.com</code>. Deux façons en Spring : soit un test explicite dans le service,
+         soit donner l'autorité <code>ROLE_ADMIN</code> à cet email et protéger les routes de mutation avec
+         <code>@PreAuthorize("hasRole('ADMIN')")</code> (ou une règle dans la <code>SecurityFilterChain</code>).
+         Appliqué uniquement sur POST/PATCH/DELETE <code>/products</code> ; les GET restent accessibles à
+         tout utilisateur connecté.</p>
+      <p class="small"><strong>Pourquoi :</strong> répond exactement à la consigne (« pas de RBAC ») tout en
+         restant propre et centralisé — une seule comparaison, réutilisable.</p>
+    </div>
+  </div>
+
+  <div class="req">
+    <div class="h">6.4 &amp; 6.5 — Panier &amp; liste d'envies côté serveur <span class="pill p-todo">À FAIRE</span></div>
+    <div class="b">
+      <p><strong>Demandé :</strong> chaque utilisateur peut gérer un panier et une liste d'envies (wishlist)
+         contenant des produits.</p>
+      <p><strong>Endpoints :</strong></p>
+      <pre><code>GET    /cart                  panier de l'utilisateur courant
+POST   /cart      { productId, quantity }
+DELETE /cart/:productId
+GET    /wishlist
+POST   /wishlist  { productId }
+DELETE /wishlist/:productId</code></pre>
+      <p><strong>Modèle JPA :</strong> relations <code>User 1—N CartItem N—1 Product</code>
+         (<code>@OneToMany</code>/<code>@ManyToOne</code>) et <code>User N—N Product</code> pour la wishlist
+         (<code>@ManyToMany</code>). L'utilisateur est déduit du JWT via le <code>SecurityContext</code> (pas
+         d'<code>userId</code> dans l'URL → on ne peut pas lire le panier d'un autre).</p>
+      <p class="small"><strong>Sécurité :</strong> rattacher panier/wishlist à l'identité du token évite
+         l'accès horizontal aux données d'autrui (bon point à souligner à l'oral).</p>
+    </div>
+  </div>
+
+  <h2 class="pb">7. Back-end — Bonus : documentation/tests d'API</h2>
+  <table>
+    <tr><th>Option</th><th>Approche</th><th>Pourquoi</th></tr>
+    <tr><td><strong>Swagger</strong></td><td>Dépendance <code>springdoc-openapi-starter-webmvc-ui</code> : génère l'UI Swagger automatiquement à partir des contrôleurs et DTO (annotations <code>@Operation</code> optionnelles).</td><td>Documentation vivante + testable dans le navigateur (<code>/swagger-ui.html</code>), quasi gratuite avec Spring.</td></tr>
+    <tr><td><strong>Collection Postman</strong></td><td>Exporter une collection avec les requêtes (account, token, products, cart, wishlist) + variable d'environnement pour le token.</td><td>Démontre les parcours bout-en-bout et se partage facilement au recruteur.</td></tr>
+  </table>
+
+  <h2>8. Choix techniques transverses (à savoir justifier)</h2>
+  <table>
+    <tr><th>Décision</th><th>Choix retenu</th><th>Justification courte</th></tr>
+    <tr><td>Langage / framework back</td><td>Java + Spring Boot 3</td><td>Standard d'entreprise, écosystème mature, exigence du recruteur</td></tr>
+    <tr><td>Persistance</td><td>Spring Data JPA + H2/PostgreSQL</td><td>CRUD et schéma générés, relations gérées, bascule de base facile</td></tr>
+    <tr><td>Mots de passe</td><td>BCryptPasswordEncoder (hash + salt)</td><td>Jamais de mot de passe en clair ; standard éprouvé</td></tr>
+    <tr><td>Authentification</td><td>Spring Security + JWT (jjwt) stateless</td><td>Pas de session serveur, scalable, simple côté SPA</td></tr>
+    <tr><td>Contrôle admin</td><td>Vérif. email du token (ROLE_ADMIN / @PreAuthorize)</td><td>« Simple et générique » comme demandé, centralisé</td></tr>
+    <tr><td>État front</td><td>Angular Signals + services</td><td>Réactif, natif, sans boilerplate NgRx pour ce périmètre</td></tr>
+    <tr><td>Validation front</td><td>Reactive Forms</td><td>Validations multiples déclaratives et testables (contact)</td></tr>
+    <tr><td>Token côté front</td><td>HTTP Interceptor</td><td>Ajout automatique du Bearer + gestion centralisée du 401</td></tr>
+    <tr><td>Persistance</td><td>SQLite + ORM</td><td>Vraie base, zéro install, relations et migrations</td></tr>
+    <tr><td>Doc API</td><td>Swagger + Postman</td><td>Couvre le bonus, démontre la qualité</td></tr>
+  </table>
+
+  <h2>9. Stratégie de test (exigée si full-stack)</h2>
+  <ul>
+    <li><strong>Tests unitaires back</strong> (JUnit 5 + Mockito) : services produits/auth, hachage,
+        génération/validation du JWT, logique du contrôle admin.</li>
+    <li><strong>Tests d'intégration back</strong> (<code>@SpringBootTest</code> + <code>MockMvc</code>) :
+        appels réels sur les endpoints (création de compte → token → accès protégé → CRUD produit en tant
+        qu'admin vs utilisateur simple), base H2 de test.</li>
+    <li><strong>Collection Postman</strong> avec assertions (statut HTTP, présence du token) pour la
+        démonstration manuelle.</li>
+    <li><strong>Front</strong> (optionnel mais valorisant) : tests des services <code>CartService</code> /
+        <code>ProductsService</code> (Jasmine/Karma déjà configurés) et validation du formulaire contact.</li>
+  </ul>
+
+  <h2>10. Ordre de développement proposé</h2>
+  <ol>
+    <li><strong>Front rapide d'abord</strong> (gains visibles immédiats, sans dépendre du back) :
+      enrichir l'affichage produit → <code>CartService</code> + ajout/suppression + badge → page panier →
+      page Contact.</li>
+    <li><strong>Back-end</strong> : init Spring Boot (Spring Initializr) + base H2 + entité/CRUD Produits
+        (JPA).</li>
+    <li><strong>Auth</strong> : <code>/account</code>, <code>/token</code>, filtre JWT, contrôle admin
+        (Spring Security).</li>
+    <li><strong>Panier &amp; wishlist serveur</strong> rattachés à l'utilisateur.</li>
+    <li><strong>Branchement front↔back</strong> : interceptor JWT + proxy <code>/api</code>, retirer le
+        fallback silencieux des mutations.</li>
+    <li><strong>Tests + Swagger/Postman</strong> + bonus (pagination, filtrage, quantités).</li>
+  </ol>
+
+  <h2 class="pb">11. FAQ entretien — questions probables &amp; réponses</h2>
+  <table>
+    <tr><th>Question probable</th><th>Réponse à donner</th></tr>
+    <tr><td>Pourquoi Java / Spring Boot pour le back ?</td><td>Standard d'entreprise pour les API REST, écosystème mature, architecture en couches claire (Controller/Service/Repository), Spring Security éprouvé pour le JWT, Spring Data JPA pour la persistance, springdoc pour Swagger.</td></tr>
+    <tr><td>Pourquoi des Signals plutôt que NgRx ?</td><td>Périmètre modeste : NgRx ajouterait du boilerplate. Les signals donnent une réactivité fine, native, lisible, avec état encapsulé dans des services singletons.</td></tr>
+    <tr><td>Comment sécurisez-vous les mots de passe ?</td><td>Hachage BCrypt (BCryptPasswordEncoder) avec sel, jamais stockés/loggés en clair, comparaison via passwordEncoder.matches.</td></tr>
+    <tr><td>Comment marche le contrôle admin sans rôles ?</td><td>Le filtre Spring Security valide le JWT, puis on vérifie que l'email du token vaut admin@admin.com (ou via ROLE_ADMIN + @PreAuthorize) sur les routes de mutation produit. Simple, générique, centralisé.</td></tr>
+    <tr><td>Un utilisateur peut-il voir le panier d'un autre ?</td><td>Non : l'utilisateur est déduit du JWT, jamais d'un id en URL. Pas d'accès horizontal.</td></tr>
+    <tr><td>Comment le front sait-il quel produit est en stock ?</td><td>Champ inventoryStatus (INSTOCK/LOWSTOCK/OUTOFSTOCK) affiché via un tag coloré.</td></tr>
+    <tr><td>Que se passe-t-il si l'API tombe ?</td><td>Aujourd'hui : fallback sur le JSON local (lecture) et faux succès sur les écritures — à durcir en prod en remontant l'erreur à l'utilisateur (toast d'échec).</td></tr>
+    <tr><td>Comment testez-vous l'API ?</td><td>Tests unitaires (JUnit 5 + Mockito) et d'intégration (@SpringBootTest + MockMvc) sur les parcours critiques, plus une collection Postman et Swagger pour la doc/démo.</td></tr>
+    <tr><td>Comment branchez-vous front et back ?</td><td>Proxy Angular /api vers le serveur, interceptor HTTP pour le Bearer, alignement des endpoints déjà appelés par ProductsService.</td></tr>
+  </table>
+
+  <p class="small" style="margin-top:30px;border-top:1px solid var(--bord);padding-top:8px">
+    Document 2/2 — Attendus &amp; choix techniques. À lire avec le document 1 « État des lieux ». Une fois
+    ces deux documents assimilés, on attaque le développement dans l'ordre proposé en section 10.
+  </p>
+
+</div>
+</body>
+</html>

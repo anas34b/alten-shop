@@ -1,0 +1,43 @@
+<!-- Zone d'affichage des notifications (le "toast" de succes apparaitra ici) -->
+<p-toast />
+
+<p-card header="Contact" styleClass="contact-card">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="flex flex-column gap-3">
+
+        <!-- Champ EMAIL -->
+        <div class="flex flex-column gap-1">
+            <label for="email">Email *</label>
+            <input pInputText id="email" type="email" formControlName="email"
+                   placeholder="vous@exemple.com" />
+            <!-- Messages d'erreur, affiches seulement si le champ a ete touche -->
+            @if (email.invalid && email.touched) {
+                <small class="text-red-500">
+                    @if (email.errors?.['required']) { L'email est obligatoire. }
+                    @else if (email.errors?.['email']) { L'email n'est pas valide. }
+                </small>
+            }
+        </div>
+
+        <!-- Champ MESSAGE -->
+        <div class="flex flex-column gap-1">
+            <label for="message">Message *</label>
+            <textarea pInputTextarea id="message" formControlName="message" rows="6"
+                      [maxlength]="300" placeholder="Votre message..."></textarea>
+            <!-- Compteur de caracteres -->
+            <small class="text-color-secondary align-self-end">
+                {{ message.value?.length || 0 }}/300
+            </small>
+            @if (message.invalid && message.touched) {
+                <small class="text-red-500">
+                    @if (message.errors?.['required']) { Le message est obligatoire. }
+                    @else if (message.errors?.['maxlength']) { Le message doit faire 300 caractères maximum. }
+                </small>
+            }
+        </div>
+
+        <!-- Bouton ENVOYER : desactive tant que le formulaire est invalide -->
+        <div class="text-right">
+            <p-button type="submit" label="Envoyer" icon="pi pi-send" [disabled]="form.invalid" />
+        </div>
+    </form>
+</p-card>

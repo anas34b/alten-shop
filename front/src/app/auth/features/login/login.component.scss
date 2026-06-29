@@ -1,0 +1,27 @@
+:host {
+    display: block;
+}
+
+// Centre la carte de connexion dans la page
+.login-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 4rem;
+}
+
+::ng-deep .login-card {
+    width: 100%;
+    max-width: 420px;
+}
+
+input {
+    width: 100%;
+}
+
+// Lien cliquable "Créer un compte" / "Se connecter"
+.link {
+    color: var(--primary-color);
+    cursor: pointer;
+    text-decoration: underline;
+}

@@ -1,0 +1,11 @@
+# Fichiers a NE PAS envoyer dans le contexte de build Docker
+# (plus le contexte est petit, plus le build est rapide).
+target/
+.git/
+.gitignore
+.gitattributes
+HELP.md
+*.md
+.idea/
+*.iml
+.vscode/
