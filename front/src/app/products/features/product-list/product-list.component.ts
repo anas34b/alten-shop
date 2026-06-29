@@ -1,6 +1,7 @@
 import { Component, OnInit, computed, inject, signal } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
+import { AuthService } from "app/auth/data-access/auth.service";
 import { CartService } from "app/cart/data-access/cart.service";
 import { Product } from "app/products/data-access/product.model";
 import { ProductsService } from "app/products/data-access/products.service";
@@ -59,6 +60,9 @@ export class ProductListComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
   private readonly cartService = inject(CartService);
   private readonly messageService = inject(MessageService);
+
+  /** Vrai si l'utilisateur connecte est admin -> seul a voir les actions de gestion. */
+  public readonly isAdmin = inject(AuthService).isAdmin;
 
   public readonly products = this.productsService.products;
 
@@ -129,7 +133,9 @@ export class ProductListComponent implements OnInit {
   }
 
   public onDelete(product: Product) {
-    this.productsService.delete(product.id).subscribe();
+    this.productsService.delete(product.id).subscribe({
+      error: () => this.showActionError(),
+    });
   }
 
   /** Ajoute le produit au panier et affiche une confirmation. */
@@ -144,16 +150,27 @@ export class ProductListComponent implements OnInit {
   }
 
   public onSave(product: Product) {
-    if (this.isCreation) {
-      this.productsService.create(product).subscribe();
-    } else {
-      this.productsService.update(product).subscribe();
-    }
-    this.closeDialog();
+    const request$ = this.isCreation
+      ? this.productsService.create(product)
+      : this.productsService.update(product);
+
+    request$.subscribe({
+      next: () => this.closeDialog(), // on ferme le dialog seulement si le serveur a accepte
+      error: () => this.showActionError(),
+    });
   }
 
   public onCancel() {
     this.closeDialog();
+  }
+
+  /** Toast affiche quand une action de gestion est refusee par le serveur (ex: non-admin -> 403). */
+  private showActionError() {
+    this.messageService.add({
+      severity: "error",
+      summary: "Action refusée",
+      detail: "Seul l'administrateur peut gérer les produits.",
+    });
   }
 
   private closeDialog() {

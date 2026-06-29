@@ -3,9 +3,11 @@
 
 <h1 class="text-center">Liste des produits</h1>
 
-<div class="text-center mb-3">
-    <p-button label="Créer produit" icon="pi pi-plus" (onClick)="onCreate()" />
-</div>
+@if (isAdmin()) {
+    <div class="text-center mb-3">
+        <p-button label="Créer produit" icon="pi pi-plus" (onClick)="onCreate()" />
+    </div>
+}
 
 <!-- Barre de filtres (bonus) : recherche par nom + filtre par categorie -->
 <div class="flex flex-wrap gap-3 justify-content-center align-items-center mb-3">
@@ -61,13 +63,15 @@
                                   [disabled]="product.inventoryStatus === 'OUTOFSTOCK'"
                                   (onClick)="onAddToCart(product)" />
 
-                        <!-- Actions CRUD existantes -->
-                        <div class="flex gap-2">
-                            <p-button label="Modifier" severity="secondary" size="small"
-                                      styleClass="flex-1" (onClick)="onUpdate(product)" />
-                            <p-button label="Supprimer" severity="danger" size="small"
-                                      styleClass="flex-1" (onClick)="onDelete(product)" />
-                        </div>
+                        <!-- Actions de gestion : reservees a l'admin -->
+                        @if (isAdmin()) {
+                            <div class="flex gap-2">
+                                <p-button label="Modifier" severity="secondary" size="small"
+                                          styleClass="flex-1" (onClick)="onUpdate(product)" />
+                                <p-button label="Supprimer" severity="danger" size="small"
+                                          styleClass="flex-1" (onClick)="onDelete(product)" />
+                            </div>
+                        }
                     </div>
                 </div>
             }

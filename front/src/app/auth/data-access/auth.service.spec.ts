@@ -43,7 +43,16 @@ describe("AuthService", () => {
     expect(completed).toBe(true);
     expect(service.isAuthenticated()).toBe(true);
     expect(service.email()).toBe("admin@admin.com");
+    expect(service.isAdmin()).toBe(true); // admin@admin.com -> admin
     expect(localStorage.getItem("token")).toBe(token);
+  });
+
+  it("un utilisateur non-admin n'est PAS admin", () => {
+    service.login("bob@test.com", "secret123").subscribe();
+    httpMock.expectOne("/token").flush({ token: fakeToken("bob@test.com") });
+
+    expect(service.isAuthenticated()).toBe(true);
+    expect(service.isAdmin()).toBe(false);
   });
 
   it("logout efface le token", () => {

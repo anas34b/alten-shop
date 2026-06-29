@@ -33,6 +33,9 @@ export class AuthService {
   /** Vrai si un utilisateur est connecte. */
   public readonly isAuthenticated = computed(() => this._token() !== null);
 
+  /** E-mail de l'administrateur (seul habilite a gerer les produits). */
+  private static readonly ADMIN_EMAIL = "admin@admin.com";
+
   /** L'e-mail de l'utilisateur, extrait du token JWT (champ "sub"). */
   public readonly email = computed(() => {
     const token = this._token();
@@ -45,6 +48,9 @@ export class AuthService {
       return null;
     }
   });
+
+  /** Vrai si l'utilisateur connecte est l'administrateur. */
+  public readonly isAdmin = computed(() => this.email() === AuthService.ADMIN_EMAIL);
 
   /** Renvoie le token courant (utilise par l'interceptor HTTP). */
   public token(): string | null {

@@ -2,6 +2,13 @@
 
 > Journal de bord du développement. Mis à jour à chaque étape.
 
+## 🌐 Démo en ligne (déployée sur Render)
+- **Front** : https://alten-shop.onrender.com  (connexion : `admin@admin.com` / `admin123`)
+- **Back** : https://alten-shop-back-33jv.onrender.com  (Swagger : `/swagger-ui/index.html`)
+- **Repo** : https://github.com/anas34b/alten-shop
+- ⚠️ Offre gratuite Render : le back **s'endort après ~15 min** → 1er chargement lent (~50 s), puis rapide.
+  La base H2 se réinitialise à chaque réveil (re-seed des 30 produits + admin).
+
 ## Stack utilisée
 - **Front** : Angular 18 + PrimeNG 17 (fourni, non modifié pour l'instant)
 - **Back** : Java 21 + Spring Boot 4.1 + Spring Data JPA + base H2 (dev)
