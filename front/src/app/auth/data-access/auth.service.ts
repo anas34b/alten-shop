@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable, computed, inject, signal } from "@angular/core";
 import { Observable, map, tap } from "rxjs";
+import { environment } from "environments/environment";
 
 /** Payload attendu par la route d'inscription du back. */
 export interface RegisterPayload {
@@ -53,7 +54,7 @@ export class AuthService {
   /** Connexion : recupere un token et le stocke. */
   public login(email: string, password: string): Observable<void> {
     return this.http
-      .post<{ token: string }>("/token", { email, password })
+      .post<{ token: string }>(`${environment.apiUrl}/token`, { email, password })
       .pipe(
         tap((response) => this.setToken(response.token)),
         map(() => undefined),
@@ -62,7 +63,7 @@ export class AuthService {
 
   /** Inscription : cree un nouveau compte. */
   public register(payload: RegisterPayload): Observable<unknown> {
-    return this.http.post("/account", payload);
+    return this.http.post(`${environment.apiUrl}/account`, payload);
   }
 
   /** Deconnexion : on oublie le token. */

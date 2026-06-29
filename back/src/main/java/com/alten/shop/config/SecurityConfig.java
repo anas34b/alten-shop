@@ -3,15 +3,20 @@ package com.alten.shop.config;
 import com.alten.shop.auth.JwtAuthenticationFilter;
 import jakarta.servlet.DispatcherType;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 /**
  * Configuration de la securite : qui a le droit d'acceder a quoi.
@@ -35,6 +40,25 @@ public class SecurityConfig {
     }
 
     /**
+     * Configuration CORS : autorise les appels venant du front depuis n'importe quelle origine.
+     *
+     * On peut se permettre "*" (toutes origines) car l'authentification passe par un en-tete
+     * "Authorization: Bearer ..." (et non par des cookies) -> pas de risque lie aux credentials.
+     * En production stricte, on remplacerait "*" par l'URL exacte du front.
+     */
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration config = new CorsConfiguration();
+        config.setAllowedOriginPatterns(List.of("*"));
+        config.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE", "OPTIONS"));
+        config.setAllowedHeaders(List.of("*"));
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", config);
+        return source;
+    }
+
+    /**
      * Chaine de filtres de securite.
      * On recoit le filtre JWT par injection (il est @Component) pour l'inserer dans la chaine.
      */
@@ -45,6 +69,10 @@ public class SecurityConfig {
         http
                 // API REST sans cookie de session -> la protection CSRF est inutile.
                 .csrf(csrf -> csrf.disable())
+
+                // Active CORS (utilise le bean corsConfigurationSource ci-dessous) :
+                // autorise le front (deploye sur un autre domaine) a appeler l'API.
+                .cors(Customizer.withDefaults())
 
                 // Autorise l'affichage de la console H2 (rendue dans une <iframe>).
                 .headers(headers -> headers.frameOptions(frame -> frame.disable()))

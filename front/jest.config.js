@@ -23,8 +23,10 @@ module.exports = {
     ],
   },
 
-  // Le projet importe les fichiers via "app/..." (baseUrl=src) : on indique a Jest ou les trouver.
+  // Le projet importe les fichiers via "app/..." et "environments/..." (baseUrl=src) :
+  // on indique a Jest ou les trouver.
   moduleNameMapper: {
     "^app/(.*)$": "<rootDir>/src/app/$1",
+    "^environments/(.*)$": "<rootDir>/src/environments/$1",
   },
 };
